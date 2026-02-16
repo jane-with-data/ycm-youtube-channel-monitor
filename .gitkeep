@@ -1,9 +1,0 @@
-data
-docs
-notebooks
-sql/queries
-sql/schemas
-src/extract
-src/transform
-src/load
-tests
