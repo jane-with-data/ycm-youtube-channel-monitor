@@ -1,0 +1,11 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+
+# Biến môi trường
+.env
+
+*.db
+
+draft/
