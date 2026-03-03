@@ -1,11 +1,11 @@
 # Python
 __pycache__/
 *.pyc
-venv/
+.venv/
 
 # Biến môi trường
 .env
 
 *.db
 
-draft/
+draft/S

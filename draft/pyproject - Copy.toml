@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "excel_handler"
+version = "0.0.1"
+description = "A tool for handling Excel files include read, write Excel files."
+authors = [
+    {name = "NGAN, Nguyen Kim", email = "ngan.nk.data@gmail.com"}
+]
+
+readme = "README.md"
+requires-python = ">=3.9"
+
+dependencies = [
+    "cryptography"
+    "python-dotenv",
+    "pyyaml",
+    "openpyxl",
+    "pandas",
+    "pydantic-settings"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+]
+
+[project.urls]
+Repository = "https://github.com/jane-with-data/excel_handler"
+Documentation = "https://github.com/jane-with-data/excel_handler/tree/main/README.md"
+
+[tool.setuptools.packages.find]
+where = ["src"]  # Tìm tất cả package bên trong thư mục src
+
+[project.scripts]
+# Tạo lệnh chạy nhanh trong terminal
+ca-excel_handler = "cli.main:main"

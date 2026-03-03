@@ -1,0 +1,79 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ycm-youtube-channel-monitor"
+version = "0.1.0"
+description = "YouTube Channel Monitor ETL Pipeline"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [
+    {name = "NGAN, Nguyen Kim", email = "ngan.nk.data@gmail.com"}
+]
+dependencies = [
+    # Gen password
+    "cryptography",
+
+    # Database
+    "sqlalchemy==2.0.0",
+    "psycopg2-binary==2.9.9",
+
+    # Data processing
+    "pandas==2.1.0",
+    "pyarrow==14.0.0",       # đọc/ghi Parquet
+
+    # PySpark — phải khớp với SPARK_VERSION trong Dockerfile
+    "pyspark==3.5.0",
+
+    # API / HTTP
+    "requests==2.31.0",
+    "httpx==0.25.0",         # async requests
+
+    # Config / env
+    "python-dotenv==1.0.0",
+    "pydantic>=2.0",
+    "pydantic-settings>=2.0",
+
+    # Logging / monitoring
+    "loguru==0.7.2",
+
+    # Data validation
+    "great-expectations==0.18.0",
+
+    # Utilities
+    "tenacity==8.2.3",       # retry logic
+    "pendulum==3.0.0",       # datetime cho Airflow
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "black>=23.0",
+    "flake8>=6.0",
+    "isort>=5.12",
+    "mypy>=1.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --tb=short"
+
+[tool.black]
+line-length = 100
+target-version = ['py39', 'py310', 'py311']
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
