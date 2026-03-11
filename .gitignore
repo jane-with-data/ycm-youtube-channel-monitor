@@ -2,10 +2,11 @@
 __pycache__/
 *.pyc
 .venv/
+*.egg-info/
 
 # Biến môi trường
 .env
 
 *.db
 
-draft/S
+draft/
