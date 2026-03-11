@@ -1,54 +1,20 @@
-"""Settings and configuration management using Pydantic."""
+import os
+from dotenv import load_dotenv
 
-from pydantic_settings import BaseSettings
-from pathlib import Path
+load_dotenv()
 
+# --- YouTube API ---
+YOUTUBE_API_V3 = os.getenv("YOUTUBE_API_V3")
+YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY")
 
-class Settings(BaseSettings):
-    """Application settings loaded from .env file."""
+# --- PostgreSQL database ---
+POSTGRES_URL = os.getenv("POSTGRES_URL")
+POSTGRES_HOST = os.getenv("POSTGRES_HOST")
+POSTGRES_PORT = os.getenv("POSTGRES_PORT")
+POSTGRES_DATABASE = os.getenv("POSTGRES_DATABASE")
+POSTGRES_USER = os.getenv("POSTGRES_USER")
+POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD")
 
-    # Database
-    db_host: str = "localhost"
-    db_port: int = 5432
-    db_name: str = "ycm"
-    db_user: str = "postgres"
-    db_password: str = ""
-    
-    # API
-    youtube_api_key: str
-    youtube_api_base_url: str = "https://www.googleapis.com/youtube/v3"
-    
-    # ETL Settings
-    batch_size: int = 100
-    max_retries: int = 3
-    request_timeout: int = 30
-    
-    # Paths
-    data_dir: Path = Path("data")
-    logs_dir: Path = Path("data/logs")
-    
-    # Logging
-    log_level: str = "INFO"
-    log_format: str = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-    
-    # Environment
-    environment: str = "development"  # development, staging, production
-    debug: bool = False
-    
-    class Config:
-        """Pydantic config."""
-        env_file = ".env"
-        env_file_encoding = "utf-8"
-        case_sensitive = False
-
-    @property
-    def db_url(self) -> str:
-        """Build database URL."""
-        return (
-            f"postgresql://{self.db_user}:{self.db_password}@"
-            f"{self.db_host}:{self.db_port}/{self.db_name}"
-        )
-
-
-# Global settings instance
-settings = Settings()
+# Quick check if essential configs are loaded
+if not YOUTUBE_API_KEY:
+    raise EnvironmentError("YOUTUBE_API_KEY not found in .env file.")

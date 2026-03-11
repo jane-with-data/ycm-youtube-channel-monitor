@@ -19,6 +19,7 @@ MAX_WIDTH: Final[int] = 60
 PATH = {
     "PROJECT_ROOT": Path(__file__).parent.parent.parent,
     "DATA_DIR": Path(__file__).parent.parent.parent / "data",
+    "DIR_DATA_RAW": Path(__file__).parent.parent.parent / "data" / "raw",
     "INPUT_DIR": Path(__file__).parent.parent.parent / "data" / "input",
     "OUTPUT_DIR": Path(__file__).parent.parent.parent / "data" / "output",
     "LOGS_DIR": Path(__file__).parent.parent.parent / "data" / "logs",
