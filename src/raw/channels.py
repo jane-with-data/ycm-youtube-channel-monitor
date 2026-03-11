@@ -1,7 +1,6 @@
 import json
 import requests
 from datetime import datetime
-from googleapiclient.discovery import build
 from config.settings import YOUTUBE_API_V3, YOUTUBE_API_KEY
 from config.constants import PATH
 from pathlib import Path
@@ -47,12 +46,14 @@ class Channels:
     def _save_to_json_file(self, data: dict) -> None:
         
         
-        date = datetime.now().strftime('%Y-%m-%d')
+        year = datetime.now().strftime('%Y')
+        month = datetime.now().strftime('%m')
+        day = datetime.now().strftime('%d')
         hour = datetime.now().strftime('%H')
         
         file_name = f"channels.jsonl"
         
-        file_path_not_include_file_name = self.dir_data_raw / "youtube" / "channels" / f"landed_date={date}" / f"hour={hour}" 
+        file_path_not_include_file_name = self.dir_data_raw / "youtube" / "channels" / f"year={year}" / f"month={month}" / f"day={day}" / f"hour={hour}" 
         file_path_not_include_file_name.mkdir(parents=True, exist_ok=True)
         
         file_path = file_path_not_include_file_name / file_name
