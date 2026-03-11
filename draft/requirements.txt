@@ -1,9 +1,0 @@
-google-auth-oauthlib
-google-api-python-client
-pydantic
-SQLAlchemy
-requests
-pandas
-python-dotenv
-openpyxl
-pymysql
