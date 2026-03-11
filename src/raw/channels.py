@@ -58,9 +58,9 @@ class Channels:
         
         file_path = file_path_not_include_file_name / file_name
 
-        with open(file_path, 'a') as f:
-            json.dump(data, f, ensure_ascii=True, indent=4)
-        
+        with open(file_path, "a", encoding="utf-8") as f:
+            f.write(json.dumps(data, ensure_ascii=True) + "\n")
+
 if __name__ == "__main__":
     channel = Channels()
     data = channel.get_channel_data_by_channel_id_pipeline("UCM9KgI3IytaTL9hr0vhXxuQ")
