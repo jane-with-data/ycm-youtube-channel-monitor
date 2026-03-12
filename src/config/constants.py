@@ -20,8 +20,9 @@ PATH = {
     "PROJECT_ROOT": Path(__file__).parent.parent.parent,
     "DATA_DIR": Path(__file__).parent.parent.parent / "data",
     "DIR_DATA_RAW": Path(__file__).parent.parent.parent / "data" / "raw",
-    "INPUT_DIR": Path(__file__).parent.parent.parent / "data" / "input",
-    "OUTPUT_DIR": Path(__file__).parent.parent.parent / "data" / "output",
+    "DIR_DATA_BRONZE": Path(__file__).parent.parent.parent / "data" / "bronze",
+    "DIR_DATA_SILVER": Path(__file__).parent.parent.parent / "data" / "silver",
+    "DIR_DATA_GOLD": Path(__file__).parent.parent.parent / "data" / "gold",
     "LOGS_DIR": Path(__file__).parent.parent.parent / "data" / "logs",
     "TEMP_DIR": Path(__file__).parent.parent.parent / "data" / "temp"
 }
