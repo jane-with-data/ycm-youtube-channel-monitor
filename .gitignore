@@ -4,9 +4,13 @@ __pycache__/
 .venv/
 *.egg-info/
 
-# Biến môi trường
+# Environment
 .env
 
+# Data
 *.db
 
-draft/
+data/**/*.jsonl
+data/**/*.parquet
+ 
+src/draft/

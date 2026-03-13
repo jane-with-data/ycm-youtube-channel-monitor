@@ -16,34 +16,34 @@ dependencies = [
     "cryptography",
 
     # Database
-    "sqlalchemy==2.0.0",
+    "sqlalchemy>=2.0.0",
     "psycopg2-binary==2.9.9",
 
     # Data processing
-    "pandas==2.1.0",
-    "pyarrow==14.0.0",       # đọc/ghi Parquet
+    "pandas>=2.2.0",
+    "pyarrow>=15.0.0",       # read/write Parquet
 
     # PySpark — phải khớp với SPARK_VERSION trong Dockerfile
     "pyspark==3.5.0",
 
     # API / HTTP
-    "requests==2.31.0",
-    "httpx==0.25.0",         # async requests
+    "requests>=2.31.0",
+    "httpx>=0.25.0",         # async requests
 
     # Config / env
-    "python-dotenv==1.0.0",
+    "python-dotenv>=1.0.0",
     "pydantic>=2.0",
     "pydantic-settings>=2.0",
 
     # Logging / monitoring
-    "loguru==0.7.2",
+    "loguru>=0.7.2",
 
     # Data validation
-    "great-expectations==0.18.0",
+    "great-expectations>=0.18.0",
 
     # Utilities
-    "tenacity==8.2.3",       # retry logic
-    "pendulum==3.0.0",       # datetime cho Airflow
+    "tenacity>=8.2.3",       # retry logic
+    "pendulum>=3.0.0",       # datetime cho Airflow
 ]
 
 [project.optional-dependencies]
