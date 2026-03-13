@@ -1,6 +1,6 @@
 import json
 import requests
-from datetime import datetime
+from datetime import datetime, timezone
 from config.settings import YOUTUBE_API_V3, YOUTUBE_API_KEY
 from config.constants import PATH
 from pathlib import Path
@@ -11,7 +11,7 @@ class Channels:
         self.YOUTUBE_API_KEY = YOUTUBE_API_KEY
         self.dir_data_raw = PATH['DIR_DATA_RAW']
     def _fetch_channel_data_by_channel_id(self, channel_id: str) -> dict:
-        """Lấy dữ liệu kênh YouTube dựa trên channel_id."""
+        """Get data by channel id using Youtube API V3"""
         
         BASE_URL = f"{self.YOUTUBE_API_V3}/channels/" 
         params = {
@@ -27,7 +27,7 @@ class Channels:
 
     def _gen_metadata(self) -> dict:    
         metadata = {
-            "_landed_at": datetime.now().isoformat(),
+            "_landed_at": datetime.now(timezone.utc).isoformat(),
             "_source_system": "API",
             "_source_file": "youtube_api_v3",    
         }
@@ -46,10 +46,10 @@ class Channels:
     def _save_to_json_file(self, data: dict) -> None:
         
         
-        year = datetime.now().strftime('%Y')
-        month = datetime.now().strftime('%m')
-        day = datetime.now().strftime('%d')
-        hour = datetime.now().strftime('%H')
+        year = datetime.now(timezone.utc).strftime('%Y')
+        month = datetime.now(timezone.utc).strftime('%m')
+        day = datetime.now(timezone.utc).strftime('%d')
+        hour = datetime.now(timezone.utc).strftime('%H')
         
         file_name = f"channels.jsonl"
         
