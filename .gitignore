@@ -13,4 +13,4 @@ __pycache__/
 data/**/*.jsonl
 data/**/*.parquet
  
-draft/ -- Ignore the entire draft directory and its contents
+src/draft/ -- Ignore the entire draft directory and its contents
