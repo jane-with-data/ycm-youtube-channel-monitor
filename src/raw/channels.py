@@ -5,6 +5,9 @@ from config.settings import YOUTUBE_API_V3, YOUTUBE_API_KEY
 from config.constants import PATH
 from pathlib import Path
 
+# TODO:
+# 1. Checksum: Hash items instead of whole payload.
+# 2. Check dup within the same file.
 class Channels:
     def __init__(self):
         self.YOUTUBE_API_V3 = YOUTUBE_API_V3

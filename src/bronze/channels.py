@@ -11,6 +11,8 @@ pd.set_option("display.max_colwidth", None)
 
 # Flow
 # read raw data -> process metadata -> process payload -> generate additional columns -> merge -> rename columns -> just keep necessary columns -> write to parquet
+# TODO 
+# Hash items instead of whole  payload.
 
 class Channels:
     def __init__(self):
