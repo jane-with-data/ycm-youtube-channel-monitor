@@ -12,5 +12,6 @@ __pycache__/
 
 data/**/*.jsonl
 data/**/*.parquet
+data/**/*.log*
  
 src/draft/

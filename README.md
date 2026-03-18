@@ -1,13 +1,14 @@
 # YCM - Youtube Channel Monitor // ycm-youtube-channel-monitor
 
 ## 1. Overview
-Là project thu thập daily thông tin kênh Youtube, playlist thuộc kênh, video thuộc kênh, bình luận thuộc video để lưu trữ, theo dõi, phân tích.
+This project ETL data from Youtube API V3 to monitor channel performance.
+This project apply Medallion Architecture Lakehouse with 3 layer: bronze -> silver -> gold.
 
 **KEY**: YCM
 
 ## 2. Tech Stack
-- Database: PostgreSQL
-- ETL: PySpark
+- Data Storage: .jsonl, .parquet
+- ETL: Pandas
 - Orchestration: Airflow
 - BI: Power BI
 
@@ -21,31 +22,24 @@ Là project thu thập daily thông tin kênh Youtube, playlist thuộc kênh, v
 ycm-youtube-channel-monitor/
 ├── data/
 │   ├── bronze/                # Load data to JSON file
-|
-init/
-├── 01_create_schemas.sql   -- create bronze/silver/gold schemas beforehand
-├── 02_create_roles.sql     -- create roles/users
-└── 03_seed_data.sql        -- insert data mẫu để dev/test
+│   ├── silver/                # Load data to .parquet file
+│   ├── gold/                  # Load data to .parquet file
 |
 ├── src/
-│   ├── bronze/                 # Extract/Ingest data source code
-│   ├── silver/                 # Transfrom source code
-│   └── gold/                   # Load, save file source code
+│   ├── bronze/                 # Ingest data source code // Code for pipeline in bronze layer
+│   ├── silver/                 # Transfrom source code // Code for pipeline in silver layer
+│   └── gold/                   # Denormalize data, dim/fact/aggrerate table // Code for pipeline in gold layer
 ├── main.py                 
-├── docker-compose.yml
 ├── .env
 ├── .env.example
-├── dags/                       # Airflow DAGs (ETL pipelines)
+├── dags/                       # Airflow DAGs (Pipeline Orchestration)
 │   ├── bronze/
 │   ├── silver/
 │   └── gold/
 ├── docs/
 │   ├── README.md               # Project overview, set-up guideline
-│   ├── data_dictionary.md      # Catalog, table, column, business glossary description
-│   ├── change_log.md           # Related-Data changing history (Schemas/Tables,...)
-│   ├── pipeline_inventory.md   # Pipeline information (SLA, Schedule,...)
-│   └── runbook.md              # Error tracking,...
-└── Makefile                    # Docker shortcut commands
+│   └── pipeline_management.md  # Pipeline information (SLA, Schedule, data dictionary,...)
+└── .
 ```
 
 ## 5. Set-up and Run
@@ -53,44 +47,6 @@ init/
 
 2. Create and fill out .env from template `.env.example`
 (Could create password for filling via script `src/utils/generate_password.py`)
-
-3.1. Start Docker on PC and run: `docker-compose up -d`
-(Need install Docker PC beforeheadhttps://www.docker.com/products/docker-desktop`)
-
-3.2. Check if Docker start succesfully: `docker-compose ps`
-Expected ouput:
-```
-NAME                      STATUS
-ycm_postgres              running
-ycm_airflow_init          exited (0)   ← exit 0 means success
-ycm_airflow_webserver     running
-ycm_airflow_scheduler     running
-```
-
-4. Check if schemas init sucessfull
-`docker exec -it dwh_postgres psql -U dwh_admin -d dwh -c "\dn"`
-Expected output:
-```
-List of schemas
-  Name   |  Owner
----------+-----------
- bronze  | ycm_admin
- silver  | ycm_admin
- gold    | ycm_admin
- audit   | ycm_admin
- config  | ycm_admin
-```
-
-5. Access if Airflow UI sucessfull
-Access: `http://localhost:8080`, login with admin / password in .env
-
-6. Daily Docker command
-```
-docker-compose up -d        # Start Docker
-docker-compose down         # Off Docker (still remain data)
-docker-compose logs -f      # Check logs when occur errors
-docker-compose ps           # Check Docker status
-```
 
 ## 6. Contact
 - Data lead: ngannk // ngan.nk.data@gmail.com

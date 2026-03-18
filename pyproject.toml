@@ -37,6 +37,8 @@ dependencies = [
 
     # Logging / monitoring
     "loguru>=0.7.2",
+    "logging",
+
 
     # Data validation
     "great-expectations>=0.18.0",
